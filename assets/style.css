@@ -1,0 +1,9 @@
+input.correct_answer {
+    background-color: green;
+    color: white;
+}
+
+input.wrong {
+    background-color: red;
+    color: white;
+}

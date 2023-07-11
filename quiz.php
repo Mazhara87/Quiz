@@ -9,7 +9,10 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
+$isCorrect = false;
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
 
     // Обработка ответа пользователя
     $username = $_SESSION['username'];
@@ -24,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if(isset($_POST['correct_answer'])){
         $selectedAnswer = $_POST['correct_answer'];
+        $isCorrect = true;
     }
     if(isset($_POST['wrong1'])){
         $selectedAnswer = $_POST['wrong1'];
@@ -35,6 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $selectedAnswer = $_POST['wrong3'];
     }
     $questionId = $_POST['question_id'];
+
+
+    
     
 
     // Сохранение ответа пользователя в базе данных
@@ -47,17 +54,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ]);
 
 
-    // if ($isCorrect) {
-    //     $score = $user['score'] + 1;
-    //     $query = "UPDATE users SET score = :score WHERE user_id = :userId";
-    //     $request = $db->prepare($query);
-    //     $request->execute([
-    //         ':score' => $score,
-    //         ':userId' => $user['user_id']
-    //     ]);
-    // }
+    if ($isCorrect) {
+        $score = $user['score'] + 1;
+        $query = "UPDATE users SET score = :score WHERE user_id = :userId";
+        $request = $db->prepare($query);
+        $request->execute([
+            ':score' => $score,
+            ':userId' => $user['user_id']
+        ]);
+    }
 
-    header('Location: quiz.php?answer=' . $selectedAnswer);
+    header('Location: quiz_alt.php?question=' . $selectedAnswer);
 }
 
 
@@ -75,8 +82,8 @@ $currentQuestion = $request->fetch();
 
 <head>
     <title>Quiz - Quiz</title>
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <script src="./js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <script src="assets/script.js"></script>
 </head>
 
 <body>
@@ -106,7 +113,8 @@ $currentQuestion = $request->fetch();
                     $tabAnswersTemp[10] => $currentQuestion['wrong3'],
                 ];
 
-                foreach ($tabAnswers as $key => $answer) { ?>
+                foreach ($tabAnswers as $key => $answer) { 
+                    ?>
 
                     <input type="submit" name="<?php echo $key ?>" value="<?php echo $answer ?>">
 
