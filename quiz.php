@@ -47,6 +47,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ]);
 
 
+    // if ($isCorrect) {
+    //     $score = $user['score'] + 1;
+    //     $query = "UPDATE users SET score = :score WHERE user_id = :userId";
+    //     $request = $db->prepare($query);
+    //     $request->execute([
+    //         ':score' => $score,
+    //         ':userId' => $user['user_id']
+    //     ]);
+    // }
+
     header('Location: quiz.php?answer=' . $selectedAnswer);
 }
 
@@ -71,6 +81,15 @@ $currentQuestion = $request->fetch();
 
 <body>
     <div class="container">
+        <?php if(isset($_SESSION['username'])){  ?>
+            <p>pseudo : <?php echo $_SESSION['username'] ?></p>
+
+            <form action="process/process_deconnexion.php" method="post">
+                <button type="submit">deconnexion</button>
+            </form>
+
+            <?php } ?>
+
         <h1 class="title">Quiz</h1>
         <div class="quiz">
             <h2 class="question"><?php echo $currentQuestion['question_text']; ?></h2>

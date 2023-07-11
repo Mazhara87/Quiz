@@ -2,11 +2,11 @@
 
 require_once('connexion.php');
 
-// session_start();
+session_start();
 // session_destroy();
 
 if (isset($_SESSION['username'])) {
-    header("Location: index.php");
+    header("Location: quiz.php");
     exit();
 }
 
@@ -15,10 +15,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-    $query = "SELECT * FROM users WHERE username = '$username'";
-    $request = $db->query($query);
+    $query = "SELECT * FROM users WHERE username = :username";
+    $request = $db->prepare($query);
+    $request->execute([
+        ':username' => $username,
+    ]);
+    $user = $request->fetch();
 
-    if ($request == false) {
+    if ($user === false) {
 
         $query = "INSERT INTO users (username) VALUES (:username)";
         $request = $db->prepare($query);
