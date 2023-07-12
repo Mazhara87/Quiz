@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <div class="container">
-        <h1 class="title">Quiz <img src="image/image0.jpeg" width="200" height="50"></h1>
+        <h1 class="title">Quiz</h1>
         <form method="POST" action="index.php" class="login-form">
             <label for="username" class="login-label">Enter your username:</label>
             <input type="text" id="username" name="username" class="login-input" required>
