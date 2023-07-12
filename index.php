@@ -41,13 +41,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Quiz</title>
     <link rel="stylesheet" type="text/css" href="assets/style.css">
 </head>
+
 <body>
     <div class="container">
-        <h1 class="title">Quiz</h1>
+        <h1 class="title">Quiz <img src="image/image0.jpeg" width="200" height="50"></h1>
         <form method="POST" action="index.php" class="login-form">
             <label for="username" class="login-label">Enter your username:</label>
             <input type="text" id="username" name="username" class="login-input" required>
@@ -62,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </tr>
             <?php
 
-              require_once('connexion.php');
+            require_once('connexion.php');
 
 
 
@@ -71,8 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             while ($row = $request->fetch($db::FETCH_ASSOC)) {
                 echo "<tr>";
-                echo "<td>".$row['username']."</td>";
-                echo "<td>".$row['best_score']."</td>";
+                echo "<td>" . $row['username'] . "</td>";
+                echo "<td>" . $row['best_score'] . "</td>";
                 echo "</tr>";
             }
 
@@ -80,4 +82,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </table>
     </div>
 </body>
+
 </html>

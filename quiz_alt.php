@@ -20,27 +20,11 @@ $request->execute([
 ]);
 $currentQuestion = $request->fetch();
 
+
+include_once('partials/header.php');
 ?>
 
-<!DOCTYPE html>
-<html>
 
-<head>
-    <title>Quiz - Quiz</title>
-    <link rel="stylesheet" type="text/css" href="assets/style.css">
-</head>
-
-<body>
-    <div class="container">
-        <?php if (isset($_SESSION['username'])) { ?>
-            <p>pseudo: <?php echo $_SESSION['username'] ?></p>
-
-            <form action="process/process_deconnexion.php" method="post">
-                <button type="submit">deconnexion</button>
-            </form>
-        <?php } ?>
-
-        <h1 class="title">Quiz</h1>
         <div class="quiz">
             <h2 class="question"><?php echo $currentQuestion['question_text']; ?></h2>
             <form method="get" action="quiz.php" class="answer-form">
@@ -67,6 +51,6 @@ $currentQuestion = $request->fetch();
             </form>
         </div>
     </div>
-</body>
 
-</html>
+
+    <?php  include_once('partials/footer.php') ?>
