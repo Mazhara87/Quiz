@@ -28,15 +28,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if(isset($_POST['correct_answer'])){
         $selectedAnswer = $_POST['correct_answer'];
         $isCorrect = true;
+        $resultAnswer = 'correct';
     }
-    if(isset($_POST['wrong1'])){
+    else if(isset($_POST['wrong1'])){
         $selectedAnswer = $_POST['wrong1'];
+        $resultAnswer = 'wrong';
     }
-    if(isset($_POST['wrong2'])){
+    else if(isset($_POST['wrong2'])){
         $selectedAnswer = $_POST['wrong2'];
+        $resultAnswer = 'wrong';
     }
-    if(isset($_POST['wrong3'])){
+    else if(isset($_POST['wrong3'])){
         $selectedAnswer = $_POST['wrong3'];
+        $resultAnswer = 'wrong';
     }
     $questionId = $_POST['question_id'];
 
@@ -64,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
     }
 
-    header('Location: quiz_alt.php?question=' . $selectedAnswer);
+    header('Location: quiz_alt.php?question=' . $selectedAnswer . '&result=' . $resultAnswer . '&idQuestion=' . $questionId);
 }
 
 
@@ -119,7 +123,6 @@ $currentQuestion = $request->fetch();
                     <input type="submit" name="<?php echo $key ?>" value="<?php echo $answer ?>">
 
                 <?php } ?>
-                <!-- <input type="submit" value="Next" class="next-button" disabled> -->
             </form>
         </div>
     </div>
