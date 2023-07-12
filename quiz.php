@@ -87,21 +87,27 @@ $currentQuestion = $request->fetch();
 </head>
 
 <body>
-    <div class="container">
-        <?php if(isset($_SESSION['username'])){  ?>
-            <p>pseudo : <?php echo $_SESSION['username'] ?></p>
+    <div id="header">
+        <div>
+         <h1 class="title"><img src="./assets/image/IMG_2853.jpg" height="100px"></h1>
+        </div>
+        <div class="container">
+            <?php if(isset($_SESSION['username'])){  ?>
+              <p>Hello, <?php echo $_SESSION['username'] ?>!</p>
 
-            <form action="process/process_deconnexion.php" method="post">
-                <button type="submit">deconnexion</button>
-            </form>
+              <form action="process/process_deconnexion.php" method="post">
+                <button type="submit">Sign out</button>
+              </form>
 
             <?php } ?>
-
-        <h1 class="title">Quiz</h1>
+        </div>
+        
+    </div>    
         <div class="quiz">
             <h2 class="question"><?php echo $currentQuestion['question_text']; ?></h2>
             <form method="POST" action="quiz.php" class="answer-form">
                 <input type="hidden" name="question_id" value="<?php echo $currentQuestion['question_id']; ?>">
+            
                 <?php
                 // var_dump(array_keys($currentQuestion));
 
@@ -122,7 +128,7 @@ $currentQuestion = $request->fetch();
                 <!-- <input type="submit" value="Next" class="next-button" disabled> -->
             </form>
         </div>
-    </div>
+    
 </body>
 
 </html>
