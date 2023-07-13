@@ -47,10 +47,10 @@ include_once('partials/header.php');
                     }
                 }
                 ?>
-                
+        </div> 
                 <input type="submit" value="Next" class="next-button">
             </form>
-        </div>
+
     </div>
 
 
