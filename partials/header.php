@@ -10,7 +10,7 @@
 <body>
     <header id="header">
         <div>
-            <h1 class="title"><img src="./assets/image/IMG_2853.jpg" height="100px"></h1>
+            <h1 class="title"><img src="./assets/image/ImageLogo.jpg" height="100px"></h1>
         </div>
         <div class="container">
             <?php if (isset($_SESSION['username'])) {  ?>

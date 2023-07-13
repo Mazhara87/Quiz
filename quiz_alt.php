@@ -47,6 +47,7 @@ include_once('partials/header.php');
                     }
                 }
                 ?>
+                
                 <input type="submit" value="Next" class="next-button">
             </form>
         </div>
