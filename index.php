@@ -39,28 +39,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html>
+<?php 
+include_once('partials/header.php');
+?>
 
-<head>
-    <title>Quiz</title>
-    <link rel="stylesheet" type="text/css" href="assets/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-
-<body>
-    <div class="container">
-        <h1 class="title">Quiz <img src="image/image0.jpeg" width="200" height="50"></h1>
+        <div id="signin">
         <form method="POST" action="index.php" class="login-form">
-            <label for="username" class="login-label">Enter your username:</label>
+            <label for="username" class="login-label">Username:</label>
             <input type="text" id="username" name="username" class="login-input" required>
             <input type="submit" value="Start Quiz" class="login-button">
         </form>
+        </div>
 
-        <h2 class="user-list-heading">User List</h2>
-        <table class="user-list-table">
+        <div id="userlist">
+        <h3 class="user-list-heading">User List</h3>
+
+         <table class="user-list-table">
             <tr>
-                <th>Username</th>
+                <th>User</th>
                 <th>Best Score</th>
             </tr>
             <?php
@@ -80,9 +76,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             ?>
-        </table>
-    </div>
-    <script scr="script.js></script>
-</body>
+         </table>
 
-</html>
+        </div>
+    </div>
+
+
+    <?php  include_once('partials/footer.php') ?>
